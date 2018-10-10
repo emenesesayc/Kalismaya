@@ -26,6 +26,10 @@ public class Modify extends AppCompatActivity {
         editor.putString("" + id, edit.getText().toString());
         editor.commit();
 
-        startActivity(new Intent(Modify.this, Horario.class));
+        intent.putExtra("text", edit.getText().toString());
+
+        setResult(0,intent);
+        finish();
+        //startActivity(new Intent(Modify.this, Horario.class));
     }
 }

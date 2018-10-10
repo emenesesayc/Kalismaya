@@ -52,7 +52,8 @@ public class Horario extends AppCompatActivity {
                         int id = v.getId();
                         Intent intent = new Intent(Horario.this, Modify.class);
                         intent.putExtra("button", id);
-                        startActivity(intent);
+                        //startActivity(intent);
+                        startActivityForResult(intent, 0);
                     }
                 });
                 row.addView(buttons[i][j]);
@@ -60,6 +61,12 @@ public class Horario extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int a, int b, Intent intent) {
+        super.onActivityResult(a, b, intent);
 
+        Button button = (Button) findViewById(intent.getIntExtra("button", -1));
+        button.setText(intent.getStringExtra("text"));
+    }
 
 }
