@@ -1,5 +1,6 @@
 package com.example.emene.myapplication4;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,7 @@ public class Modify extends AppCompatActivity {
 
         intent.putExtra("text", edit.getText().toString());
 
-        setResult(0,intent);
+        setResult(Activity.RESULT_OK, intent);
         finish();
         //startActivity(new Intent(Modify.this, Horario.class));
     }

@@ -1,6 +1,7 @@
 package com.example.emene.myapplication4;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
@@ -44,6 +45,7 @@ public class Horario extends AppCompatActivity {
                 buttons[i][j].setLayoutParams(new TableRow.LayoutParams(width, height));
                 buttons[i][j].setText(text);
                 buttons[i][j].setId(id);
+                buttons[i][j].setAllCaps(false);
                 //buttons[i][j].setBackgroundColor(0xFFFFFFFF);
                 buttons[i][j].setBackgroundResource(R.drawable.border);
                 buttons[i][j].setOnClickListener(new View.OnClickListener() {
@@ -53,7 +55,7 @@ public class Horario extends AppCompatActivity {
                         Intent intent = new Intent(Horario.this, Modify.class);
                         intent.putExtra("button", id);
                         //startActivity(intent);
-                        startActivityForResult(intent, 0);
+                        startActivityForResult(intent, 1);
                     }
                 });
                 row.addView(buttons[i][j]);
@@ -62,11 +64,15 @@ public class Horario extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int a, int b, Intent intent) {
-        super.onActivityResult(a, b, intent);
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
 
-        Button button = (Button) findViewById(intent.getIntExtra("button", -1));
-        button.setText(intent.getStringExtra("text"));
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                Button button = (Button) findViewById(intent.getIntExtra("button", -1));
+                button.setText(intent.getStringExtra("text"));
+            }
+        }
     }
 
 }
